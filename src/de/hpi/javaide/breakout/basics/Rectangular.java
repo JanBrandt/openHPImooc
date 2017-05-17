@@ -19,11 +19,8 @@ public abstract class Rectangular extends CollisionObject {
   /**
    * Constructor to create the basis for a rectangular object.
    * 
-   * @param game
-   *          Game reference to the game that provides access to the Processing
-   *          features
-   * @param position
-   *          Position x,y position of the Object
+   * @param game Reference to the game that provides access to the Processing features
+   * @param position x,y position of the Object
    * @param dimension Die Dimension
    */
   public Rectangular(Game game, Point position, Dimension dimension) {
