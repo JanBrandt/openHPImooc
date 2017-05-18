@@ -14,17 +14,23 @@ public class Brick extends Rectangular {
   private int hits;
   
 
+  /**
+   * Create a brick.
+   * @param game Game provide access to the Processing features
+   * @param position Position of the brick
+   * @param dimension Size of the brick
+   */
   public Brick(Game game, Point position, Dimension dimension) {
     super(game, position, dimension);
-    // TODO Auto-generated constructor stub
     hits = 3;
+    setColor(150, 150, 150);
   }
 
   @Override
   public void display() {
     game.rectMode(PConstants.CENTER);
     game.stroke(150);
-    game.fill(getR(), getG(), getB());
+    game.fill(100);
     game.rect(getX(), getY(), getWidth(), getHeight());
   }
   

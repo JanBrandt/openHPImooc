@@ -12,6 +12,7 @@ import processing.core.PConstants;
  * @param game Game provide access to the Processing features
  */
 public class Paddle extends Rectangular {
+  
   public Paddle(final Game game) {
     super(game, new Point(game.width / 2, game.height - 20), new Dimension(100, 20));
     setColor(150, 150, 150);

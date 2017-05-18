@@ -2,6 +2,10 @@ package de.hpi.javaide.breakout.elements;
 
 import de.hpi.javaide.breakout.Displayable;
 import de.hpi.javaide.breakout.starter.Game;
+import de.hpi.javaide.breakout.starter.GameConstants;
+
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -11,7 +15,7 @@ import java.util.Iterator;
  * @author Ralf Teusner and Tom Staubitz
  *
  */
-// TODO die Wall wird aus Bricks gebaut.
+
 public class Wall implements Displayable, Iterable<Brick> {
 
   /**
@@ -20,6 +24,7 @@ public class Wall implements Displayable, Iterable<Brick> {
   private ArrayList<Brick> wall;
 
   public Wall(Game game, int i, int j) {
+    wall = new ArrayList<Brick>();
     buildWall(game, i ,j);
   }
 
@@ -37,12 +42,25 @@ public class Wall implements Displayable, Iterable<Brick> {
    * @param rows Number of rows to create in the wall
    */
   private void buildWall(Game game, int columns, int rows) {
-
+    // TODO schönere Wall
+    final int height = GameConstants.SCREEN_X / (2 * rows);
+    final int width = (int) Math.round(GameConstants.SCREEN_Y * 0.9 / columns);
+    final int distanceBetweenBricks = 5;
+    for (int i = 0 ; i < columns;i++) {
+      for (int j = 0; j < rows;j++) {
+        Point point = new Point((j + 1) * (distanceBetweenBricks + width),
+                                (i + 1) * (height + distanceBetweenBricks));
+        System.out.println(point.toString());
+        Brick brick = new Brick(game, point, new Dimension(width,height));
+        wall.add(brick);
+      }
+    }
   }
 
   @Override
   public void display() {
-    // TODO Auto-generated method stub
-    
+    for (Brick brick : wall) {
+      brick.display();
+    }
   }
 }
