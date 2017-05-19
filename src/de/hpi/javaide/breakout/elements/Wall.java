@@ -43,14 +43,13 @@ public class Wall implements Displayable, Iterable<Brick> {
    */
   private void buildWall(Game game, int columns, int rows) {
     // TODO schönere Wall
-    final int height = GameConstants.SCREEN_X / (2 * rows);
+    final int height = GameConstants.SCREEN_X / (3 * rows);
     final int width = (int) Math.round(GameConstants.SCREEN_Y * 0.9 / columns);
-    final int distanceBetweenBricks = 5;
+    final int distanceBetweenBricks = 7;
     for (int i = 0 ; i < columns;i++) {
       for (int j = 0; j < rows;j++) {
         Point point = new Point((j + 1) * (distanceBetweenBricks + width),
                                 (i + 1) * (height + distanceBetweenBricks));
-        System.out.println(point.toString());
         Brick brick = new Brick(game, point, new Dimension(width,height));
         wall.add(brick);
       }
