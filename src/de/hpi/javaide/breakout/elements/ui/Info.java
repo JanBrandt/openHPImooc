@@ -13,12 +13,13 @@ public class Info extends UIObject {
 
   public Info(Game game, String content) {
     super(game);
+    this.content = content;
   }
 
   @Override
   public void display() {
     game.textFont(Font.getFont24());
-
+    game.text(content, 100, 100);
   }
 
   @Override
