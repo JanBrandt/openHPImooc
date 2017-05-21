@@ -23,9 +23,9 @@ public class Wall implements Displayable, Iterable<Brick> {
    */
   private ArrayList<Brick> wall;
 
-  public Wall(Game game, int i, int j) {
+  public Wall(Game game, int columns, int rows) {
     wall = new ArrayList<Brick>();
-    buildWall(game, i ,j);
+    buildWall(game, columns ,rows);
   }
 
   @Override
