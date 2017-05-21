@@ -6,7 +6,6 @@ import de.hpi.javaide.breakout.starter.Game;
 import de.hpi.javaide.breakout.starter.GameConstants;
 import java.util.LinkedList;
 
-
 //TODO hier werden wir sicher eine Collection brauchen um die Bälle unterzubringen.
 //     Irgendwie müssen die Bälle an den Start gebracht werden.
 public class BallDepot implements Displayable, Measureable {
@@ -14,23 +13,34 @@ public class BallDepot implements Displayable, Measureable {
 
   /**
    * Constructor for the ballDepot.
-   * @param game Game provide access to the Processing features
-   * @param numberOfBalls The number of ball to be in the depot
+   * 
+   * @param game
+   *          Game provide access to the Processing features
+   * @param numberOfBalls
+   *          The number of ball to be in the depot
    */
   public BallDepot(Game game, int numberOfBalls) {
     this.ballDepot = new LinkedList<Ball>();
-    for (int i = 0;i < numberOfBalls;i++) {
+    for (int i = 0; i < numberOfBalls; i++) {
       Ball ball = new Ball(game, GameConstants.STARTPOSITION);
       ballDepot.add(ball);
     }
   }
-  
+
   public int leftBalls() {
     return ballDepot.size();
   }
 
+  /**
+   * Method to get a ball out of the depot, if the depot is not empty.
+   * @return a Ball from the depot
+   */
   public Ball dispense() {
-    return ballDepot.removeFirst();
+    if (!isEmpty()) {
+      return ballDepot.removeFirst();
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -60,11 +70,11 @@ public class BallDepot implements Displayable, Measureable {
   @Override
   public void display() {
     // TODO Auto-generated method stub
-    
+
   }
 
   public boolean isEmpty() {
-    return leftBalls() > 0;
+    return leftBalls() < 1;
   }
 
 }
