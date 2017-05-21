@@ -12,7 +12,6 @@ import java.awt.Point;
 //     Irgendwie muss ich herausbekommen ob der Stein noch existiert oder nicht.
 public class Brick extends Rectangular {
   private int hits;
-  
 
   /**
    * Create a brick.
@@ -22,7 +21,7 @@ public class Brick extends Rectangular {
    */
   public Brick(Game game, Point position, Dimension dimension) {
     super(game, position, dimension);
-    hits = 3;
+    hits = 1;
     setColor(150, 150, 150);
   }
 

@@ -1,6 +1,7 @@
 package de.hpi.javaide.breakout.elements;
 
 import de.hpi.javaide.breakout.starter.Game;
+import de.hpi.javaide.breakout.starter.GameConstants;
 
 //TODO den Fehler unten haben wir absichtlich eingebaut, um zu zeigen, 
 // dass hier noch was getan werden muss.
@@ -28,7 +29,29 @@ public final class CollisionLogic {
    */
   public static void checkCollision(final Game game, final Ball ball, final Paddle paddle,
                                     final Wall wall) {
+    if (collideWithSide(game, ball)) {
+      ball.bounceX();
+    } else if (collideWithTop(game, ball)) {
+      ball.bounceY();
+    } else if (collideWithPaddle(game, ball, paddle)) {
+      ball.bounceY();
+    }
+    
     // TODO
   }
+  
+  private static boolean collideWithPaddle(Game game, Ball ball, Paddle paddle) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 
+  private static boolean collideWithSide(final Game game, final Ball ball) {
+    return false;
+  }
+
+  private static boolean collideWithTop(final Game game, final Ball ball) {
+    boolean upperCollide = ball.getY() < 0;
+    boolean lowerCollide = ball.getY() > GameConstants.SCREEN_Y;
+    return upperCollide || lowerCollide;
+  }
 }

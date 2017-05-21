@@ -48,4 +48,12 @@ public class Ball extends Elliptic {
     game.noStroke();
     game.ellipse(getX(), getY(), getWidth(), getHeight());
   }
+
+  public void bounceX() {
+    direction.setX(-direction.getX());   
+  }
+
+  public void bounceY() {
+    direction.setY(-direction.getY());   
+  }
 }
