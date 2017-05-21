@@ -22,7 +22,7 @@ import processing.core.PConstants;
 public class Ball extends Elliptic {
   
   private int speed;
-  private Vector vector;
+  private Vector direction;
 
   /**
    * Constructor for the ball. Sets speed to 1.
@@ -32,13 +32,12 @@ public class Ball extends Elliptic {
   public Ball(final Game game, final Point position) {
     super(game, position, new Dimension(10, 10));
     speed = 1;
-    vector.setX(0);
-    vector.setY(10);
+    direction = new Vector(0, 10);
   }
 
   public void move() {
-    int newX = (int) Math.round(position.getX() + speed * vector.getX());
-    int newY = (int) Math.round(position.getY() + speed * vector.getY());
+    int newX = (int) Math.round(position.getX() + speed * direction.getX());
+    int newY = (int) Math.round(position.getY() + speed * direction.getY());
     update(new Point(newX, newY), dimension);
   }
 
