@@ -29,8 +29,7 @@ public abstract class Elliptic extends CollisionObject {
    * Default constructor to create a round object with a size 10,10 at the top
    * left corner of the screen.
    * 
-   * @param game
-   *          Game
+   * @param game Game provide access to the Processing featuress
    */
   public Elliptic(Game game) {
     this(game, new Point(0, 0), new Dimension(10, 10));
