@@ -76,7 +76,6 @@ public class EndScreen implements Screen {
 
   @Override
   public void display() {
-    System.out.println("Game over: Hit enter to restart.");
     infoBox.display();
   }
 
