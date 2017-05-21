@@ -3,10 +3,10 @@ package de.hpi.javaide.breakout.elements;
 import de.hpi.javaide.breakout.basics.Elliptic;
 import de.hpi.javaide.breakout.basics.Vector;
 import de.hpi.javaide.breakout.starter.Game;
+import processing.core.PConstants;
+
 import java.awt.Dimension;
 import java.awt.Point;
-
-
 
 /**
  * Blueprint for a Ball.
@@ -29,7 +29,7 @@ public class Ball extends Elliptic {
     super(game, position, new Dimension(10, 10));
     speed = 1;
     vector.setX(0);
-    vector.setY(1);
+    vector.setY(10);
   }
 
   public void move() {
@@ -40,7 +40,9 @@ public class Ball extends Elliptic {
 
   @Override
   public void display() {
-    // TODO Auto-generated method stub
-    
+    game.ellipseMode(PConstants.CENTER);
+    game.fill(200);
+    game.stroke(220);
+    game.ellipse(getX(), getY(), getWidth(), getHeight());
   }
 }
