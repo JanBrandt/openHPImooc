@@ -3,10 +3,9 @@ package de.hpi.javaide.breakout.elements;
 import de.hpi.javaide.breakout.basics.Elliptic;
 import de.hpi.javaide.breakout.basics.Vector;
 import de.hpi.javaide.breakout.starter.Game;
-import processing.core.PConstants;
-
 import java.awt.Dimension;
 import java.awt.Point;
+import processing.core.PConstants;
 
 /**
  * Blueprint for a Ball.
@@ -25,6 +24,11 @@ public class Ball extends Elliptic {
   private int speed;
   private Vector vector;
 
+  /**
+   * Constructor for the ball. Sets speed to 1.
+   * @param game Game provide access to the Processing features
+   * @param position Startposition of the ball
+   */
   public Ball(final Game game, final Point position) {
     super(game, position, new Dimension(10, 10));
     speed = 1;
@@ -42,7 +46,7 @@ public class Ball extends Elliptic {
   public void display() {
     game.ellipseMode(PConstants.CENTER);
     game.fill(200);
-    game.stroke(220);
+    game.noStroke();
     game.ellipse(getX(), getY(), getWidth(), getHeight());
   }
 }

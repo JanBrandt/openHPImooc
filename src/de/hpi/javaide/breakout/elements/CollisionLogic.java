@@ -22,7 +22,7 @@ public final class CollisionLogic {
    * the collidable elements on the screen. Paddle, Bricks, ...
    * 
    * @param game Game provide access to the Processing features
-   * @param ball The actuall ball in game
+   * @param ball The actual ball in game
    * @param paddle The paddle controlled by the player
    * @param wall The wall of bricks
    */

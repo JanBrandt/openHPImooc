@@ -19,14 +19,14 @@ public class Paddle extends Rectangular {
   }
 
   @Override
-  public final void display() {
+  public void display() {
     game.rectMode(PConstants.CENTER);
     game.noStroke();
     game.fill(getR(), getG(), getB());
     game.rect(getX(), getY(), getWidth(), getHeight());
   }
 
-  public final void move() {
+  public void move() {
     update(new Point(game.mouseX, getY()), new Dimension(getWidth(), getHeight()));
   }
 }
