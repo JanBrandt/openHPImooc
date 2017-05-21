@@ -9,6 +9,7 @@ import de.hpi.javaide.breakout.elements.Wall;
 import de.hpi.javaide.breakout.elements.ui.Score;
 import de.hpi.javaide.breakout.elements.ui.Timer;
 import de.hpi.javaide.breakout.starter.Game;
+import de.hpi.javaide.breakout.starter.GameConstants;
 
 /**
  * The Screen can be in three states, either the StartScreen, the GameScreen, or
@@ -85,9 +86,9 @@ public class GameScreen implements Screen {
    */
   @Override
   public void init() {
-    ballDepot = new BallDepot(game);
+    ballDepot = new BallDepot(game, GameConstants.LIVES);
     paddle = new Paddle(game);
-    wall = new Wall(game, 6, 7);
+    wall = new Wall(game, GameConstants.NUMBER_OF_BRICKCOLUMNS, GameConstants.NUMBER_OF_BRICKROWS);
     score = new Score(game);
     timer = new Timer(game);
     game.loop();
