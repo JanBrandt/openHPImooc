@@ -73,7 +73,7 @@ public class StartScreen implements Screen {
 
   @Override
   public void update() {
-    // TODO Auto-generated method stub
+    // StartScreen must not be updated
 
   }
 

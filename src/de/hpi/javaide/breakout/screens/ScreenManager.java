@@ -38,6 +38,8 @@ public class ScreenManager {
       case Screen.END:
         currentScreen = EndScreen.getInstance(game);
         break;
+      default:
+        break;
     }
   }
 

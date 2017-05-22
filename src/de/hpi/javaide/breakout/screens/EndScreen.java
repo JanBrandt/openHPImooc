@@ -70,8 +70,7 @@ public class EndScreen implements Screen {
 
   @Override
   public void update() {
-    // TODO Auto-generated method stub
-
+    // nothing to do in EndScreen
   }
 
   @Override
@@ -85,6 +84,9 @@ public class EndScreen implements Screen {
       case Screen.KEY_ENTER:
         System.out.println("restart..");
         ScreenManager.setScreen(game, Screen.START);
+        break;
+      default:
+        break;
     }
   }
 
