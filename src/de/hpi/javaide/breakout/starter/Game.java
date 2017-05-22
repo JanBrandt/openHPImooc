@@ -13,7 +13,7 @@ public class Game extends PApplet implements GameConstants {
   public void setup() {
     size(SCREEN_X, SCREEN_Y);
     background(0);
-    frameRate(30);
+    frameRate(GameConstants.framerate);
     Font.init(this);
     ScreenManager.setScreen(this, Screen.START);
   }

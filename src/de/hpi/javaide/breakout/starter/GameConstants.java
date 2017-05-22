@@ -9,4 +9,5 @@ public interface GameConstants {
   final int SCREEN_X = 800;
   final int SCREEN_Y = 600;
   final Point STARTPOSITION = new Point(SCREEN_X / 2, SCREEN_Y / 2);
+  final int framerate = 60;
 }
