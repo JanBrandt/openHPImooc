@@ -21,7 +21,7 @@ import processing.core.PConstants;
 // jemand wissen wollen in welche Richtung er fliegt.
 public class Ball extends Elliptic {
   
-  private int speed;
+  private double speed;
   private Vector direction;
 
   /**
@@ -31,8 +31,8 @@ public class Ball extends Elliptic {
    */
   public Ball(final Game game, final Point position) {
     super(game, position, new Dimension(10, 10));
-    speed = 1;
-    direction = new Vector(0, 10);
+    speed = 10;
+    direction = new Vector(0, 1);
   }
 
   public void move() {
@@ -55,5 +55,28 @@ public class Ball extends Elliptic {
 
   public void bounceY() {
     direction.setY(-direction.getY());   
+  }
+
+  public void bounceOffPaddle(Paddle paddle) {
+    // TODO Geschwindigkeitveränderung des Balles
+    //this.speed = paddle.getSpeed();
+    direction = new Vector((getX() - paddle.getX()) * 10, - getY());
+    direction.normalize();
+  }
+
+  public int upperBounderyBall() {
+    return getY() - getHeight() / 2;
+  }
+  
+  public int lowerBounderyBall() {
+    return getY() + getHeight() / 2;
+  }
+  
+  public int leftBounderyBall() {
+    return getX() - getWidth() / 2;
+  }
+  
+  public int rightBounderyBall() {
+    return getX() + getWidth() / 2;
   }
 }

@@ -34,24 +34,31 @@ public final class CollisionLogic {
     } else if (collideWithTop(game, ball)) {
       ball.bounceY();
     } else if (collideWithPaddle(game, ball, paddle)) {
-      ball.bounceY();
+      ball.bounceOffPaddle(paddle);
     }
     
     // TODO
   }
   
   private static boolean collideWithPaddle(Game game, Ball ball, Paddle paddle) {
-    // TODO Auto-generated method stub
-    return false;
+    boolean hitPaddle = false;
+    if (ball.lowerBounderyBall() > paddle.getY() - paddle.getHeight() / 2) {
+      if (ball.getX()> paddle.getLeftBoundary() && ball.getX() < paddle.getRightBoundary()) {
+        hitPaddle = true;
+      }
+    }
+    return hitPaddle;
   }
 
   private static boolean collideWithSide(final Game game, final Ball ball) {
-    return false;
+    boolean collideRightSide = ball.rightBounderyBall() > GameConstants.SCREEN_X;
+    boolean collideLeftSide = ball.leftBounderyBall() < 0;
+    return collideLeftSide || collideRightSide;
   }
 
   private static boolean collideWithTop(final Game game, final Ball ball) {
-    boolean upperCollide = ball.getY() < 0;
-    boolean lowerCollide = ball.getY() > GameConstants.SCREEN_Y;
+    boolean upperCollide = ball.upperBounderyBall() < 0;
+    boolean lowerCollide = ball.lowerBounderyBall() > GameConstants.SCREEN_Y;
     return upperCollide || lowerCollide;
   }
 }

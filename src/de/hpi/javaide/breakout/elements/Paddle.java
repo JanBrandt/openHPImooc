@@ -12,6 +12,7 @@ import processing.core.PConstants;
  * @param game Game provide access to the Processing features
  */
 public class Paddle extends Rectangular {
+  private double speed;
   
   public Paddle(final Game game) {
     super(game, new Point(game.width / 2, game.height - 20), new Dimension(100, 20));
@@ -27,6 +28,19 @@ public class Paddle extends Rectangular {
   }
 
   public void move() {
+    speed = ((double) game.mouseX - (double) getX()) / 10;
     update(new Point(game.mouseX, getY()), new Dimension(getWidth(), getHeight()));
+  }
+
+  public double getSpeed() {
+    return Math.abs(speed);
+  }
+
+  public int getLeftBoundary() {
+    return getX() - getWidth() / 2;
+  }
+
+  public int getRightBoundary() {
+    return getX() + getWidth() / 2;
   }
 }
