@@ -134,7 +134,9 @@ public class GameScreen implements Screen {
   public void handleKeyPressed(String key) {
     switch (key) {
       case Screen.KEY_ENTER:
-        currentBall = ballDepot.dispense();
+        if (currentBall == null) {
+          currentBall = ballDepot.dispense();
+        }
         break;
       case Screen.KEY_SPACE:
       default:
@@ -155,5 +157,9 @@ public class GameScreen implements Screen {
     // cheap trick to convert an int to a String
     // (Hint: the update() Method expects an input argument of type String)
     score.update(amount + "");
+  }
+  
+  public void ballLost() {
+    currentBall = null;
   }
 }

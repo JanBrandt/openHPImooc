@@ -104,4 +104,10 @@ public class StartScreen implements Screen {
   public void increaseScore(int i) {
     // Im StartScreen gibt es keinen Counter.
   }
+
+  @Override
+  public void ballLost() {
+    // No ball, nothing to do
+    
+  }
 }

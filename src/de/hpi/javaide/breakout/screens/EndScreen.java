@@ -97,4 +97,9 @@ public class EndScreen implements Screen {
   public void increaseScore(int i) {
     // There is no counter in the EndScreen
   }
+
+  @Override
+  public void ballLost() {
+    // No Ball, nothing to do
+  }
 }

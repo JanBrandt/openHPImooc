@@ -24,4 +24,6 @@ public interface Screen extends Initializable, Displayable, Updateable {
   void handleMouseDragged();
 
   void increaseScore(int amount);
+  
+  void ballLost();
 }
