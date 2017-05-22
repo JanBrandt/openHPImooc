@@ -9,17 +9,16 @@ public class Score extends UIObject {
 
   public Score(Game game) {
     super(game);
+    score = 0;
   }
 
   @Override
   public void display() {
-    // TODO Auto-generated method stub
-    
+    // TODO Display the score
   }
 
   @Override
   public void update(String input) {
-    // TODO Auto-generated method stub
-    
+    // TODO Update the score 
   }
 }

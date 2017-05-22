@@ -10,6 +10,10 @@ public class Timer extends UIObject {
   private int seconds;
   private int updateCounter;
 
+  /**
+   * Constructor of the timer.
+   * @param game Game provide access to the Processing features
+   */
   public Timer(Game game) {
     super(game);
     seconds = 60;
@@ -30,6 +34,6 @@ public class Timer extends UIObject {
       seconds--;
       updateCounter = 0;
     }
-    // TODO Spielabbruch bei 0 Sekunden
+    // TODO Some action after counter gets to zero
   }
 }
