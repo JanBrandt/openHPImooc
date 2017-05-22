@@ -1,14 +1,9 @@
 package de.hpi.javaide.breakout.elements;
 
+import de.hpi.javaide.breakout.screens.ScreenManager;
 import de.hpi.javaide.breakout.starter.Game;
 import de.hpi.javaide.breakout.starter.GameConstants;
 
-//TODO den Fehler unten haben wir absichtlich eingebaut, um zu zeigen, 
-// dass hier noch was getan werden muss.
-//     Hier sollen alle Kollisionen geprüft werden. Trifft der Ball das Paddle.
-//     Für jeden Stein in der Mauer: wurde er getroffen?
-//     Erreicht der Ball den Spielfeld Rand.
-//     Tipp: Schleifen könnten sich als hilfreich erweisen.
 public final class CollisionLogic {
   /**
    * The constructor of this class is private to make sure that it is only used
@@ -33,21 +28,34 @@ public final class CollisionLogic {
       ball.bounceX();
     } else if (collideWithTop(game, ball)) {
       ball.bounceY();
-    } else if (collideWithPaddle(game, ball, paddle)) {
-      ball.bounceOffPaddle(paddle);
+    } else if (leaveScreen(game, ball)) {
+      ScreenManager.getCurrentScreen().ballLost();
     }
-    
-    // TODO
+    collideWithPaddle(game, ball, paddle);
+    collideWithWall(game, ball, wall);
   }
   
-  private static boolean collideWithPaddle(Game game, Ball ball, Paddle paddle) {
-    boolean hitPaddle = false;
+  private static boolean leaveScreen(Game game, Ball ball) {
+    return ball.lowerBounderyBall() > GameConstants.SCREEN_Y;
+  }
+
+  private static void collideWithWall(Game game, Ball ball, Wall wall) {
+    for (Brick brick : wall) {
+      collideWithBrick(game, ball, brick);
+    }
+  }
+
+  private static void collideWithBrick(Game game, Ball ball, Brick brick) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  private static void collideWithPaddle(Game game, Ball ball, Paddle paddle) {
     if (ball.lowerBounderyBall() > paddle.getY() - paddle.getHeight() / 2) {
-      if (ball.getX()> paddle.getLeftBoundary() && ball.getX() < paddle.getRightBoundary()) {
-        hitPaddle = true;
+      if (ball.getX() > paddle.getLeftBoundary() && ball.getX() < paddle.getRightBoundary()) {
+        ball.bounceOffPaddle(paddle);
       }
     }
-    return hitPaddle;
   }
 
   private static boolean collideWithSide(final Game game, final Ball ball) {
@@ -57,8 +65,6 @@ public final class CollisionLogic {
   }
 
   private static boolean collideWithTop(final Game game, final Ball ball) {
-    boolean upperCollide = ball.upperBounderyBall() < 0;
-    boolean lowerCollide = ball.lowerBounderyBall() > GameConstants.SCREEN_Y;
-    return upperCollide || lowerCollide;
+    return ball.upperBounderyBall() < 0;
   }
 }

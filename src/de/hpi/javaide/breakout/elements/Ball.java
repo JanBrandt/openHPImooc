@@ -30,7 +30,7 @@ public class Ball extends Elliptic {
    * @param position Startposition of the ball
    */
   public Ball(final Game game, final Point position) {
-    super(game, position, new Dimension(10, 10));
+    super(game, position, new Dimension(15, 15));
     speed = 10;
     direction = new Vector(0, 1);
   }
@@ -44,7 +44,7 @@ public class Ball extends Elliptic {
   @Override
   public void display() {
     game.ellipseMode(PConstants.CENTER);
-    game.fill(200);
+    game.fill(170,0,170);
     game.noStroke();
     game.ellipse(getX(), getY(), getWidth(), getHeight());
   }
