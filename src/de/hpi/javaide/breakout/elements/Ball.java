@@ -13,12 +13,7 @@ import processing.core.PConstants;
  * @author Ralf Teusner and Tom Staubitz
  *
  */
-// TODO neben dem Ergänzen der vom Interface erwarteten Methoden,
-// sollte der Ball Eigenschaften wie Größe und Richtung mitbringen.
-// Richtung wird in der Regel als Vector definiert.
-// Vermutlich sollte er die Richtung ändern können und sehr wahrscheinlich wird
-// früher oder später
-// jemand wissen wollen in welche Richtung er fliegt.
+
 public class Ball extends Elliptic {
   
   private double speed;
@@ -35,6 +30,9 @@ public class Ball extends Elliptic {
     direction = new Vector(0, 1);
   }
 
+  /**
+   * Method to move the ball according to speed and direction.
+   */
   public void move() {
     int newX = (int) Math.round(position.getX() + speed * direction.getX());
     int newY = (int) Math.round(position.getY() + speed * direction.getY());
@@ -57,26 +55,30 @@ public class Ball extends Elliptic {
     direction.setY(-direction.getY());   
   }
 
+  /**
+   * Method to compute the new direction and speed of the ball after hitting the paddle.
+   * @param paddle The paddle hitting the ball
+   */
   public void bounceOffPaddle(Paddle paddle) {
-    // TODO Geschwindigkeitveränderung des Balles
+    // TODO Speedchange of the ball
     //this.speed = paddle.getSpeed();
     direction = new Vector((getX() - paddle.getX()) * 10, - getY());
     direction.normalize();
   }
 
-  public int upperBounderyBall() {
+  public int getUpperBoundary() {
     return getY() - getHeight() / 2;
   }
   
-  public int lowerBounderyBall() {
+  public int getLowerBoundary() {
     return getY() + getHeight() / 2;
   }
   
-  public int leftBounderyBall() {
+  public int getLeftBoundary() {
     return getX() - getWidth() / 2;
   }
   
-  public int rightBounderyBall() {
+  public int getRightBoundary() {
     return getX() + getWidth() / 2;
   }
 }

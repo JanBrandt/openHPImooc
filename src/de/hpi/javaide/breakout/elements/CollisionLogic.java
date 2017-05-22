@@ -36,22 +36,47 @@ public final class CollisionLogic {
   }
   
   private static boolean leaveScreen(Game game, Ball ball) {
-    return ball.lowerBounderyBall() > GameConstants.SCREEN_Y;
+    return ball.getLowerBoundary() > GameConstants.SCREEN_Y;
   }
 
   private static void collideWithWall(Game game, Ball ball, Wall wall) {
     for (Brick brick : wall) {
-      collideWithBrick(game, ball, brick);
+      if (brick.isAlive()) {
+        collideWithBrick(game, ball, brick);
+      }
     }
   }
 
   private static void collideWithBrick(Game game, Ball ball, Brick brick) {
-    // TODO Auto-generated method stub
-    
+    if (ball.getLowerBoundary() > brick.upperBoundary() 
+        && ball.getUpperBoundary() < brick.upperBoundary()) {
+      if (ball.getX() > brick.leftBoundary() && ball.getX() < brick.rightBoundary()) {
+        ball.bounceY();
+        brick.isHit();
+      }
+    } else if (ball.getUpperBoundary() < brick.lowerBoundary() 
+        && ball.getLowerBoundary() > brick.lowerBoundary()) {
+      if (ball.getX() > brick.leftBoundary() && ball.getX() < brick.rightBoundary()) {
+        ball.bounceY();
+        brick.isHit();
+      }
+    } else if (ball.getLeftBoundary() < brick.rightBoundary() 
+        && ball.getRightBoundary() > brick.rightBoundary()) {
+      if (ball.getY() < brick.lowerBoundary() && ball.getY() > brick.upperBoundary()) {
+        ball.bounceY();
+        brick.isHit();
+      }
+    } else if (ball.getRightBoundary() < brick.leftBoundary() 
+        && ball.getLeftBoundary() > brick.leftBoundary()) {
+      if (ball.getY() < brick.lowerBoundary() && ball.getY() > brick.upperBoundary()) {
+        ball.bounceY();
+        brick.isHit();
+      }
+    }
   }
 
   private static void collideWithPaddle(Game game, Ball ball, Paddle paddle) {
-    if (ball.lowerBounderyBall() > paddle.getY() - paddle.getHeight() / 2) {
+    if (ball.getLowerBoundary() > paddle.getY() - paddle.getHeight() / 2) {
       if (ball.getX() > paddle.getLeftBoundary() && ball.getX() < paddle.getRightBoundary()) {
         ball.bounceOffPaddle(paddle);
       }
@@ -59,12 +84,12 @@ public final class CollisionLogic {
   }
 
   private static boolean collideWithSide(final Game game, final Ball ball) {
-    boolean collideRightSide = ball.rightBounderyBall() > GameConstants.SCREEN_X;
-    boolean collideLeftSide = ball.leftBounderyBall() < 0;
+    boolean collideRightSide = ball.getRightBoundary() > GameConstants.SCREEN_X;
+    boolean collideLeftSide = ball.getLeftBoundary() < 0;
     return collideLeftSide || collideRightSide;
   }
 
   private static boolean collideWithTop(final Game game, final Ball ball) {
-    return ball.upperBounderyBall() < 0;
+    return ball.getUpperBoundary() < 0;
   }
 }

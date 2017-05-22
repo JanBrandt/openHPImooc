@@ -42,8 +42,8 @@ public class Wall implements Displayable, Iterable<Brick> {
    * @param rows Number of rows to create in the wall
    */
   private void buildWall(Game game, int columns, int rows) {
-    // TODO schönere Wall
-    final int height = GameConstants.SCREEN_X / (3 * rows);
+    // TODO Nicer looking wall
+    final int height = GameConstants.SCREEN_X / (4 * rows);
     final int width = (int) Math.round(GameConstants.SCREEN_Y * 0.9 / columns);
     final int distanceBetweenBricks = 7;
     for (int i = 0 ; i < columns;i++) {

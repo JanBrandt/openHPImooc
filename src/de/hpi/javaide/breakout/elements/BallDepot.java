@@ -4,11 +4,23 @@ import de.hpi.javaide.breakout.Displayable;
 import de.hpi.javaide.breakout.Measureable;
 import de.hpi.javaide.breakout.starter.Game;
 import de.hpi.javaide.breakout.starter.GameConstants;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.LinkedList;
+import processing.core.PConstants;
 
 public class BallDepot implements Displayable, Measureable {
   private LinkedList<Ball> ballDepot;
-
+  /**
+   * width and height of the object.
+   */
+  private Dimension dimension;
+  /**
+   * the x,y position of an object.
+   */
+  private Point position;
+  private Game game;
+  
   /**
    * Constructor for the ballDepot.
    * 
@@ -21,6 +33,10 @@ public class BallDepot implements Displayable, Measureable {
       Ball ball = new Ball(game, GameConstants.STARTPOSITION);
       ballDepot.add(ball);
     }
+    int depotSize = numberOfBalls * 30 + 20;
+    position = new Point(GameConstants.SCREEN_X - depotSize - 10, 10);
+    dimension = new Dimension(depotSize, 40);
+    this.game = game;
   }
 
   public int leftBalls() {
@@ -42,32 +58,37 @@ public class BallDepot implements Displayable, Measureable {
 
   @Override
   public int getX() {
-    // TODO Auto-generated method stub
-    return 0;
+    return position.x;
   }
 
   @Override
   public int getY() {
-    // TODO Auto-generated method stub
-    return 0;
+    return position.y;
   }
 
   @Override
   public int getWidth() {
-    // TODO Auto-generated method stub
-    return 0;
+    return dimension.width;
   }
 
   @Override
   public int getHeight() {
-    // TODO Auto-generated method stub
-    return 0;
+    return dimension.height;
   }
 
   @Override
   public void display() {
-    // TODO Auto-generated method stub
-
+    game.rectMode(PConstants.CORNER);
+    game.stroke(200);
+    game.strokeWeight(2);
+    game.fill(0);
+    game.rect(getX(), getY(), getWidth(), getHeight());
+    for (int i = 0; i < ballDepot.size();i++) {
+      game.ellipseMode(PConstants.CORNER);
+      game.fill(170,0,170);
+      game.noStroke();
+      game.ellipse(position.x + 10 + i * 30, 15 , 30 , 30);
+    }
   }
 
   public boolean isEmpty() {
